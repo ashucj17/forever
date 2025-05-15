@@ -5,13 +5,13 @@ import Title from '../components/Title'
 import ProductItem from '../components/ProductItem'
 
 const Collection = () => {
-  const { products } = useContext(ShopContext)
+  const { products, search, showSearch } = useContext(ShopContext)
 
   const [showFilter, setShowFilter] = useState(false)
   const [filterProducts, setFilterProducts] = useState([])
   const [selectedCategories, setSelectedCategories] = useState([])
   const [selectedTypes, setSelectedTypes] = useState([])
-  const [sortOption, setSortOption] = useState('relavent')
+  const [sortOption, setSortOption] = useState('relevant')
 
   useEffect(() => {
     setFilterProducts(products)
@@ -20,6 +20,11 @@ const Collection = () => {
   useEffect(() => {
     let filtered = [...products]
 
+    // Search by name
+    if (search) {
+      filtered = filtered.filter(product => product.name.toLowerCase().includes(search.toLowerCase()))
+    }
+   
     // Filter by category
     if (selectedCategories.length > 0) {
       filtered = filtered.filter((product) => selectedCategories.includes(product.category))
@@ -38,7 +43,7 @@ const Collection = () => {
     }
 
     setFilterProducts(filtered)
-  }, [selectedCategories, selectedTypes, sortOption, products])
+  }, [selectedCategories, selectedTypes, sortOption, products, search])
 
   const handleCheckboxChange = (value, stateSetter, currentState) => {
     if (currentState.includes(value)) {
@@ -106,7 +111,7 @@ const Collection = () => {
             value={sortOption}
             onChange={(e) => setSortOption(e.target.value)}
           >
-            <option value="relavent">Sort by: Relevant</option>
+            <option value="relevant">Sort by: Relevant</option>
             <option value="low-high">Sort by: Low to High</option>
             <option value="high-low">Sort by: High to Low</option>
           </select>
