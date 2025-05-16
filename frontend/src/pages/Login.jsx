@@ -1,46 +1,58 @@
-import React, { useState } from 'react'
+import React, { useState } from 'react';
 
 const Login = () => {
-  const [currentState, setCurrentState] = useState('Sign Up')
+  const [isLogin, setIsLogin] = useState(false);
+  const currentState = isLogin ? 'Login' : 'Sign Up';
 
-  const onSubmitHandler =(event) =>{
-    event.preventDefault()
-  }
+  const onSubmitHandler = (event) => {
+    event.preventDefault();
+  };
+
+  const toggleAuthMode = () => {
+    setIsLogin(!isLogin);
+  };
 
   return (
-    <form onSubmit={onSubmitHandler} className='flex flex-col items-center w-[90%] sm:max-w-96 m-auto mt-14 gap-8 text-gray-800'>
+    <form
+      onSubmit={onSubmitHandler}
+      className='flex flex-col items-center w-full sm:max-w-96 m-auto mt-14 gap-8 text-gray-800'
+    >
       <div className='inline-flex items-center gap-2 mb-2 mt-10'>
-        <p className='prata-regular text-3xl w-auto bg-gray-800 text-white px-2 py-1 rounded'>
-          {currentState}
-        </p>
-        <hr className='border-none h-[1.5px] w-8 bg-gray-800' />
+        <p className='prata-regular text-3xl'>{currentState}</p>
+        <hr className='border-none h-1.5 w-8 bg-gray-800' />
       </div>
 
-      {currentState === 'Login' ? '' : <input
-        type="text"
-        placeholder="Name"
-        className="border-b-2 outline-none w-full py-2" required
-      /> } 
+      {!isLogin && (
+        <input
+          type="text"
+  placeholder="Name"
+  autoComplete="name"
+  className="border-b-2 outline-none w-full py-2"
+  required
+        />
+      )}
 
       <input
-        type="email"
-        placeholder="Email"
-        className="border-b-2 outline-none w-full py-2" required
-      />
-      <input
-        type="password"
-        placeholder="Password"
-        className="border-b-2 outline-none w-full py-2" required
+         type="email"
+  placeholder="Email"
+  autoComplete="email"
+  className="border-b-2 outline-none w-full py-2"
+  required
       />
 
-      <div className='w-full flex justify-between text-sm mt-[-8px]' >
-        <p className='cursor-pointer'>Forgot your password</p>  
-      
-      {
-        currentState === 'Login'
-        ? <p onClick={()=>setCurrentState('Sign Up')} className='cursor-pointer'>Create Account</p>
-        : <p onClick={()=>setCurrentState('Login')} className='cursor-pointer'>Login Here</p>
-      }
+      <input
+         type="password"
+  placeholder="Password"
+  autoComplete={isLogin ? "current-password" : "new-password"}
+  className="border-b-2 outline-none w-full py-2"
+  required
+      />
+
+      <div className='w-full flex justify-between text-sm mt-[-8px]'>
+        <p className='cursor-pointer'>Forgot your password</p>
+        <p onClick={toggleAuthMode} className='cursor-pointer'>
+          {isLogin ? 'Create Account' : 'Login Here'}
+        </p>
       </div>
 
       <button
@@ -49,18 +61,8 @@ const Login = () => {
       >
         {currentState}
       </button>
-
-      <button
-        type="button"
-        onClick={() =>
-          setCurrentState(currentState === 'Sign Up' ? 'Login' : 'Sign Up')
-        }
-        className="text-blue-600 underline text-sm"
-      >
-        Switch to {currentState === 'Sign Up' ? 'Login' : 'Sign Up'}
-      </button>
     </form>
-  )
-}
+  );
+};
 
-export default Login
+export default Login;
