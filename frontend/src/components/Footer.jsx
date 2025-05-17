@@ -1,5 +1,6 @@
 import React from 'react'
 import { assets } from '../assets/assets'
+import { Link } from 'react-router-dom'
 
 const Logo = () => (
   <div className="flex items-center">
@@ -26,10 +27,10 @@ const Footer = () => {
           <div className="md:mx-auto">
             <h3 className="text-lg font-semibold mb-4">COMPANY</h3>
             <ul className="space-y-2">
-              <li><a href="/" className="text-gray-600 hover:text-gray-900">Home</a></li>
-              <li><a href="/about" className="text-gray-600 hover:text-gray-900">About Us</a></li>
-              <li><a href="/delivery" className="text-gray-600 hover:text-gray-900">Delivery</a></li>
-              <li><a href="/privacy" className="text-gray-600 hover:text-gray-900">Privacy Policy</a></li>
+              <li><Link to="/" className="text-gray-600 hover:text-gray-900">Home</Link></li>
+              <li><Link to="/about" className="text-gray-600 hover:text-gray-900">About Us</Link></li>
+              <li><Link to="/delivery" className="text-gray-600 hover:text-gray-900">Delivery</Link></li>
+              <li><Link to="/privacy" className="text-gray-600 hover:text-gray-900">Privacy Policy</Link></li>
             </ul>
           </div>
 

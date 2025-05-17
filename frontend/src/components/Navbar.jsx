@@ -37,12 +37,12 @@ const Navbar = () => {
           <img onClick={() => setShowSearch(true)} src={assets.search_icon} alt="search-icon" className='w-5 cursor-pointer' />
 
           <div className='group relative'>
-           <Link to={'/login'}><img src={assets.profile_icon} alt="profile icon" className='w-5 cursor-pointer' /></Link>
-            <div className="group-hover:block hidden absolute dropdown-menu right-0 pt-4">
+            <Link to={'/login'}><img src={assets.profile_icon} alt="profile icon" className='w-5 cursor-pointer' /></Link>
+            <div className="group-hover:block hidden absolute dropdown-menu right-0 pt-4 z-10">
               <div className="flex flex-col gap-2 w-36 py-3 px-5 bg-slate-100 text-gray-500 rounded">
-                <p className='cursor-pointer hover:text-black'>My Profile</p>
-                <p className='cursor-pointer hover:text-black'>Orders</p>
-                <p className='cursor-pointer hover:text-black'>Logout</p>
+                <Link to='/profile' className='cursor-pointer hover:text-black'>My Profile</Link>
+                <Link to='/orders' className='cursor-pointer hover:text-black'>Orders</Link>
+                <Link to='/login' className='cursor-pointer hover:text-black'>Logout</Link>
               </div>
             </div>
           </div>
@@ -65,6 +65,8 @@ const Navbar = () => {
             <NavLink onClick={() => setVisible(false)} className='py-2 pl-6 border' to='/collection'>Collection</NavLink>
             <NavLink onClick={() => setVisible(false)} className='py-2 pl-6 border' to='/about'>About</NavLink>
             <NavLink onClick={() => setVisible(false)} className='py-2 pl-6 border' to='/contact'>Contact</NavLink>
+            <NavLink onClick={() => setVisible(false)} className='py-2 pl-6 border' to='/delivery'>Delivery</NavLink>
+            <NavLink onClick={() => setVisible(false)} className='py-2 pl-6 border' to='/privacy'>Privacy Policy</NavLink>
           </div>
         </div>
     </div>
